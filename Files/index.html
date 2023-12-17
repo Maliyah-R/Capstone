@@ -7,30 +7,35 @@
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+
   <header>
-    <h1> Welcome to Artunia</h1>
+    <h1 id="welcomeText">
+      <span class="slide-in">Welcome</span>
+      <span class="slide-in">To</span>
+      <span class="slide-in">Artunia</span>
+    </h1>
   </header>
 
   <nav>
     <ul>
-      <li><a href="#home">Home</a></li>
-      <li><a href="#create-profile">Create Profile</a></li>
+      <li><a href="#home" href="index.html">Home</a></li>
+      <li><a href="Create.html">Create Profile</a></li>
       <li><a href="#browse-content">Browse Content</a></li>
       <li><a href="#events">Events</a></li>
     </ul>
   </nav>
 
   <main>
+    <img src="ColorStatic.gif" id="temporaryImage" alt="Colorful static image">
     <section id="home">
-        <h2>Welcome to Artunia</h2>
+        <h1>Welcome to Artunia</h1>
         <p>Discover amazing artworks and talented artists from around the world.</p>
-        <!-- Additional content here -->
+        <p>Connecting with other talented artist has never been easier</p>
     </section>
 
     <section id="create-profile">
-        <h2>Create Your Artist Profile</h2>
+        <h1>Create Your Artist Profile</h1>
         <p>Join our community and showcase your artwork.</p>
-        <!-- Additional content or a form  here -->
     </section>
 
     <section id="browse-content">
@@ -44,11 +49,17 @@
         <p>Participate in events and workshops to enhance your skills.</p>
         <!-- Event listings or calendar here -->
     </section>
+
+    <section>
+      <h6 href="contact.html"> Contact Us Here</h6>
+    </section>
 </main>
 
 
   <footer>
     <p>2023 Artunia. All rights reserved</p>
   </footer>
+
+<script src= "index.js"></script>
 </body>
 </html>

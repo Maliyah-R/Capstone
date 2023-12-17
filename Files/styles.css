@@ -1,17 +1,36 @@
 /* default styles */
+
+/*Colorful Static Fade In*/
+#temporaryImage {
+  opacity: 0;
+  transition: opacity 7s ease-out;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  object-fit: cover;
+}
+
+.visible {
+  display: block;
+  opacity: 1;
+}
+
+/*body work*/
 body, ul {
   margin: 0;
   padding: 0;
 }
-
 body {
-  font-family:Verdana, Geneva, Tahoma, sans-serif
+  font-family:Verdana, Geneva, Tahoma, sans-serif;
   line-height: 1.6;
+  text-align: center;
 }
 
+/*Welcome to Artunia Placement*/
 header {
-  background-color: #333;
-  color: #fff;
+  background: radial-gradient(circle, #ced9ed, #cfc7fa, #e2c6ee, #efc8dd, #d7e9db);
   text-align: center;
   padding: 1em 0;
 }
@@ -20,8 +39,9 @@ header h1 {
   margin: 0;
 }
 
+/*Navigation Bar*/
 nav ul {
-  background-color: #688;
+  background-color: #000;
   list-style: none;
   text-align: center;
 }
@@ -34,11 +54,12 @@ nav ul li a {
   text-decoration: none;
   color: white;
   padding: 0.5em 1em;
-  display: inline-block;
+  display: inline-;
 }
 
 nav ul li a:hover {
-  background-color: #555;
+  background:radial-gradient(circle, #ced9ed, #cfc7fa, #e2c6ee, #efc8dd, #d7e9db);
+  color: #000;
 }
 
 main {
@@ -62,3 +83,40 @@ footer {
 ul {
   orientation: center;
 }
+
+#welcomeText {
+  color: white;
+  font-weight: bold;
+  text-align: center;
+}
+
+.slide-in {
+  color: black;
+  display: inline-block;
+  opacity: 0;
+  transform: translateX(-100px);
+  animation: slideIn 8.5s forwards;
+}
+
+@keyframes slideIn {
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.slide-in:nth-child(1) {
+  animation-delay: 1.5s;
+
+.slide-in:nth-child(2) {
+  animation-delay: 3.25s;
+}
+
+.slide-in:nth-child(3) {
+  animation-delay: 3.5s;
+}
+
+
+
+
+
