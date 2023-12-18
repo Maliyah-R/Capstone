@@ -54,7 +54,7 @@ nav ul li a {
   text-decoration: none;
   color: white;
   padding: 0.5em 1em;
-  display: inline-;
+  display: inline-block;
 }
 
 nav ul li a:hover {
@@ -116,7 +116,14 @@ ul {
   animation-delay: 3.5s;
 }
 
+/*Media Query*/
+@media (max-width: 800px) {
+}
 
-
-
+.form {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  }
+}
 
