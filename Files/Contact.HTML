@@ -2,7 +2,7 @@
 <html>
 <head>
     <title>Contact</title>
-    <link rel="stylesheet" type="text/css" href="styleContact.css">
+    <link rel="stylesheet" type="text/css" href="styles.css">
 </head>
 <body>
     <header>
@@ -12,16 +12,26 @@
     <a href="About.html">About Us</a>
     </nav>
     <section>
-        <form action="submit_form.php" method="post">
-            <label for="name">Name:</label><br>
-            <input type="text" id="name" name="name"><br>
-            <label for="email">Email:</label><br>
-            <input type="email" id="email" name="email"><br>
-            <label for="message">Message:</label><br>
-            <textarea id="message" name="message"></textarea><br>
-            <input type="submit" value="Submit">
+        <section class = "form"
+        action="https://formspree.io/f/xpzvapaa"
+        method="POST">
+        <label>
+            Your email:
+            <input type="email" name="email">
+        </label>
+    </section>
+
+    <section>
+        <label>
+            Your message:
+            <textarea name="message"></textarea>
+        </label>
+        <!-- your other form fields go here -->
+        <button type="submit">Send</button>
         </form>
     </section>
+
+
     <footer>
         Thank you for reaching out.
     </footer>
