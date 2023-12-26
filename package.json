@@ -17,6 +17,8 @@
     "prettier": "1.19.1"
   },
   "dependencies": {
+    "html-literal": "^1.1.0",
+    "navigo": "^8.11.1",
     "parcel": "^2.10.3",
     "yargs-parser": ">=13.1.2"
   }

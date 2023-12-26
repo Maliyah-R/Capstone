@@ -1,11 +1,7 @@
 import html from "html-literal";
 
-export default () => html`
+export default state => html`
   <header>
-    <h1 id="welcomeText">
-      <span class="slide-in">Welcome</span>
-      <span class="slide-in">To</span>
-      <span class="slide-in">Artunia</span>
-    </h1>
+    <h1>${state.header}</h1>
   </header>
 `;
