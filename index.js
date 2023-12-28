@@ -1,7 +1,7 @@
 import { Header, Nav, Main, Footer } from "./components";
 import * as store from "./store";
 import Navigo from "navigo";
-// import { capitalize } from "lodash";
+import { capitalize } from "lodash";
 // import axios from "axios";
 
 const router = new Navigo("/");
@@ -23,6 +23,21 @@ function afterRender() {
     document.querySelector("nav > ul").classList.toggle("hidden--mobile");
   });
 }
+
+router
+  .on({
+    "/": () => render(),
+    ":view": params => {
+      let view = capitalize(params.data.view);
+      if (view in store) {
+        render(store[view]);
+      } else {
+        render(store.Viewnotfound);
+        console.log(`View ${view} not defined`);
+      }
+    }
+  })
+  .resolve();
 
 // document.addEventListener("DOMContentLoaded", event => {
 //   console.log("DOM fully loaded");
