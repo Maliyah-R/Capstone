@@ -1,7 +1,7 @@
 import html from "html-literal";
 
 export default () => html`
-  <section id="events">
+  <section id="Events">
     <h2>Upcoming Events and Workshops</h2>
     <p>Participate in events and workshops to enhance your skills.</p>
     <!-- Event listings or calendar here -->
