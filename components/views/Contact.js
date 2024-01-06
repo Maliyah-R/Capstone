@@ -2,12 +2,6 @@ import html from "html-literal";
 
 export default () => html`
   <body>
-    <header>
-      <h1>Contact Us</h1>
-    </header>
-    <nav>
-      <a href="About.html">About Us</a>
-    </nav>
     <section class="form">
       <form action="https://formspree.io/f/xpzvapaa" method="POST">
         <label>
