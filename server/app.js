@@ -1,8 +1,8 @@
-import express from "express";
-import dotenv from "dotenv";
-//import mongoose from "mongoose";
+// import express from "express";
+// import dotenv from "dotenv";
+// //import mongoose from "mongoose";
 
-// Load environment variables from .env file
-dotenv.config();
+// // Load environment variables from .env file
+// dotenv.config();
 
-const app = express();
+// const app = express();

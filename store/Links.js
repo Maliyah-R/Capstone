@@ -1,6 +1,7 @@
 export default [
-  { title: "About", Text: "Find out more" },
-  { title: "Browse", Text: "Look At Art" },
-  { title: "Contact", Text: "Contact" },
-  { title: "Events", Text: "Search For Events" }
+  { title: "Home", text: "Home" },
+  { title: "About", text: "Learn More" },
+  { title: "Browse", text: "Browse" },
+  { title: "Contact", text: "Contact" },
+  { title: "Events", text: "Search For Events" }
 ];
