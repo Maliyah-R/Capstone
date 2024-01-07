@@ -96,3 +96,5 @@ app.get("/weather/:city", (request, response) => {
     city
   });
 });
+
+app.listen(PORT, () => console.log("Listening on port 4040"));
