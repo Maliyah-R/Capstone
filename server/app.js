@@ -5,6 +5,8 @@ import mongoose from "mongoose";
 // Load environment variables from .env file
 dotenv.config();
 
+const app = express();
+
 mongoose.connect(process.env.MONGODB, {
   // Configuration options to remove deprecation warnings, just include them to remove clutter
   useNewUrlParser: true,
@@ -50,13 +52,10 @@ app.use(logging);
 
 // NOTE: MIDDLEWARE GOES BEFORE THE CREATION OF THE ROUTES :)
 
-const app = express();
 // Request handlers go here
 app.get("/status", (request, response) => {
   response.send(JSON.stringify({ message: "Service healthy" }));
 });
-app.listen(4040, () => console.log("Listening on port 4040"));
-
 // Handle the request with HTTP GET method with query parameters and a url parameter
 app.get("/weather/:city", (request, response) => {
   // Express adds a "params" Object to requests that has an matches parameter created using the colon syntax
