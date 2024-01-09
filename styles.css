@@ -1,7 +1,7 @@
 /* default styles */
 
 /*Colorful Static Fade In*/
-#temporaryImage {
+#ColorfulStatic {
   opacity: 0;
   transition: opacity 7s ease-out;
   position: fixed;
@@ -80,11 +80,11 @@ footer {
   width: 100%;
 }
 
-ul {
+/* ul {
   orientation: center;
-}
+} */
 
-#welcomeText {
+header {
   color: white;
   font-weight: bold;
   text-align: center;
@@ -107,7 +107,7 @@ ul {
 
 .slide-in:nth-child(1) {
   animation-delay: 1.5s;
-
+}
 .slide-in:nth-child(2) {
   animation-delay: 3.25s;
 }
