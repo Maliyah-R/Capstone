@@ -1,4 +1,4 @@
 export default {
-  header: "Want to Know More?",
+  header: "About Artunia",
   view: "About"
 };

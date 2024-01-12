@@ -5,8 +5,6 @@ import colorStatic from "../../assets/img/ColorStatic.gif";
 export default state => html`
   <section id="home">
     <h1>Welcome to Artunia</h1>
-    <img src=${colorStatic} alt="ColorfulStatic" id="ColorfulStatic" />
-
     <h3>
       The weather in ${state.weather.city} is ${state.weather.description}.
       Temperature is ${state.weather.temp}F, and it feels like

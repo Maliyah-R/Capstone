@@ -39,7 +39,7 @@ header h1 {
   margin: 0;
 }
 
-/*Navigation Bar*/
+/* Navigation Bar*/
 nav ul {
   background-color: #000;
   list-style: none;
@@ -80,41 +80,37 @@ footer {
   width: 100%;
 }
 
-/* ul {
-  orientation: center;
-} */
-
 header {
-  color: white;
+  color: black;
   font-weight: bold;
   text-align: center;
 }
 
-.slide-in {
-  color: black;
-  display: inline-block;
-  opacity: 0;
-  transform: translateX(-100px);
-  animation: slideIn 8.5s forwards;
-}
-
-@keyframes slideIn {
-  to {
-    opacity: 1;
-    transform: translateX(0);
+  .slide-in {
+    color: black;
+    display: inline-block;
+    opacity: 0;
+    transform: translateX(-100px);
+    animation: slideIn 8.5s forwards;
   }
-}
 
-.slide-in:nth-child(1) {
-  animation-delay: 1.5s;
-}
-.slide-in:nth-child(2) {
-  animation-delay: 3.25s;
-}
+  @keyframes slideIn {
+    to {
+      opacity: 1;
+      transform: translateX(1);
+    }
+  }
 
-.slide-in:nth-child(3) {
-  animation-delay: 3.5s;
-}
+  .slide-in:nth-child(1) {
+    animation-delay: 1.5s;
+  }
+  .slide-in:nth-child(2) {
+    animation-delay: 3.25s;
+  }
+
+  .slide-in:nth-child(3) {
+    animation-delay: 3.5s;
+  }
 
 @media (max-width: 549px){
   .hidden--mobile {
@@ -148,24 +144,38 @@ header {
     display: flex;
     flex-wrap: wrap;
     flex-direction: column;
-    }
   }
 
-  @media (min-width: 550px) {
-    nav > ul {
-      display: flex;
-      justify-content: space-evenly;
-      padding: 0 0;
-    }
+  #footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    /* Other footer styles */
 
-    nav > ul > li {
-      display: inline-block;
-      text-decoration: none;
-      border: 1px solid;
-      padding: 0.5rem 0.5rem;
-      border-radius: 25px;
-    }
+@media (min-width: 550px) {
+  nav > ul {
+    display: flex;
+    justify-content: space-evenly;
+    padding: 0 0;
+  }
 
-    nav > .fa-bars {
-      display: none;
-    }
+  nav > ul > li {
+    display: inline-block;
+    text-decoration: none;
+    border: 1px solid;
+    padding: 0.5rem 0.5rem;
+    border-radius: 25px;
+  }
+
+  nav > .fa-bars {
+    display: none;
+  }
+
+  #footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    /* Other footer styles */
+}
