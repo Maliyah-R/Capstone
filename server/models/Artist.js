@@ -1,0 +1,31 @@
+import mongoose from "mongoose";
+
+const artistSchema = new mongoose.Schema({
+  username: {
+    type: String,
+    required: true,
+    validate: /^[A-Za-z0-9 ]*$/
+  },
+  medium: {
+    type: String,
+    required: true,
+    enum: ["Music", "Digital", "Fiber", "Drawing"]
+  },
+  email: {
+    type: String,
+    required: true,
+    validate: /^[A-Za-z0-9.]+@[a-zA-Z0-9.]*$/
+  },
+  experience: {
+    type: String,
+    required: true,
+    validate: /^[A-Za-z0-9 ]*$/
+  }
+  //,
+  // toppings: [String],
+  // order: { type: mongoose.Schema.Types.ObjectId, ref: "Connect" }
+});
+
+const artistMedium = mongoose.model("ArtStyle", artistSchema);
+
+export default artistMedium;
