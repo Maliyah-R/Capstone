@@ -1,6 +1,6 @@
-/* default styles */
+/* Default Styles */
 
-/*Colorful Static Fade In*/
+/* Colorful Static Fade In */
 #ColorfulStatic {
   opacity: 0;
   transition: opacity 7s ease-out;
@@ -17,29 +17,32 @@
   opacity: 1;
 }
 
-/*body work*/
+/* Body Work */
 body, ul {
   margin: 0;
   padding: 0;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
+
 body {
-  font-family:Verdana, Geneva, Tahoma, sans-serif;
   line-height: 1.6;
   text-align: center;
 }
 
-/*Welcome to Artunia Placement*/
+/* Welcome to Artunia Placement */
 header {
   background: radial-gradient(circle, #ced9ed, #cfc7fa, #e2c6ee, #efc8dd, #d7e9db);
   text-align: center;
   padding: 1em 0;
+  color: black;
+  font-weight: bold;
 }
 
 header h1 {
   margin: 0;
 }
 
-/* Navigation Bar*/
+/* Navigation Bar */
 nav ul {
   background-color: #000;
   list-style: none;
@@ -58,8 +61,13 @@ nav ul li a {
 }
 
 nav ul li a:hover {
-  background:radial-gradient(circle, #ced9ed, #cfc7fa, #e2c6ee, #efc8dd, #d7e9db);
+  background: radial-gradient(circle, #ced9ed, #cfc7fa, #e2c6ee, #efc8dd, #d7e9db);
   color: #000;
+}
+
+/* Hide .fa-bars by default (desktop view) */
+.fa-bars {
+  display: none;
 }
 
 main {
@@ -80,41 +88,43 @@ footer {
   width: 100%;
 }
 
-header {
+.slide-in {
   color: black;
-  font-weight: bold;
-  text-align: center;
+  display: inline-block;
+  opacity: 0;
+  transform: translateX(-100px);
+  animation: slideIn 8.5s forwards;
 }
 
-  .slide-in {
-    color: black;
-    display: inline-block;
-    opacity: 0;
-    transform: translateX(-100px);
-    animation: slideIn 8.5s forwards;
-  }
+.slide-in:nth-child(1) {
+  animation-delay: 1.5s;
+}
 
-  @keyframes slideIn {
-    to {
-      opacity: 1;
-      transform: translateX(1);
-    }
-  }
+.slide-in:nth-child(2) {
+  animation-delay: 3.25s;
+}
 
-  .slide-in:nth-child(1) {
-    animation-delay: 1.5s;
-  }
-  .slide-in:nth-child(2) {
-    animation-delay: 3.25s;
-  }
+.slide-in:nth-child(3) {
+  animation-delay: 3.5s;
+}
 
-  .slide-in:nth-child(3) {
-    animation-delay: 3.5s;
+@keyframes slideIn {
+  to {
+    opacity: 1;
+    transform: translateX(0);
   }
+}
 
-@media (max-width: 549px){
+/* Media Queries */
+@media (max-width: 549px) {
   .hidden--mobile {
     display: none !important;
+  }
+
+  /* Show .fa-bars in mobile view */
+  .fa-bars {
+    display: block;
+    /* additional styling as needed */
   }
 
   nav {
@@ -123,19 +133,19 @@ header {
     flex-direction: column;
   }
 
-  nav > i {
+  nav i {
     padding: 1rem;
     font-size: 2em;
   }
 
-  nav > ul {
+  nav ul {
     display: flex;
     align-items: center;
     flex-direction: column;
-    padding: 0 0;
+    padding: 0;
   }
 
-  nav > ul > li {
+  nav ul li {
     padding: 0.5rem;
     list-style-type: none;
   }
@@ -146,21 +156,22 @@ header {
     flex-direction: column;
   }
 
-  #footer {
+  footer {
     position: fixed;
     bottom: 0;
     left: 0;
     width: 100%;
-    /* Other footer styles */
+  }
+}
 
 @media (min-width: 550px) {
-  nav > ul {
+  nav ul {
     display: flex;
     justify-content: space-evenly;
-    padding: 0 0;
+    padding: 0;
   }
 
-  nav > ul > li {
+  nav ul li {
     display: inline-block;
     text-decoration: none;
     border: 1px solid;
@@ -168,14 +179,29 @@ header {
     border-radius: 25px;
   }
 
-  nav > .fa-bars {
-    display: none;
+  /* Ensure .fa-bars is hidden in desktop view */
+  .fa-bars {
+    display: none !important;
   }
 
-  #footer {
+  .charCount {
+    text-align: center;
+  }
+
+  footer {
     position: fixed;
     bottom: 0;
     left: 0;
     width: 100%;
-    /* Other footer styles */
+  }
+}
+
+.dog {
+  width: 50px;
+  height: 100px;
+}
+
+.dog:hover{
+  width: 1520px;
+  height: 896px;
 }

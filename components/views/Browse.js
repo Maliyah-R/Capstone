@@ -10,7 +10,7 @@ export default () => html`
     <h2>Browse Artist Content</h2>
     <p>Explore a diverse range of artistic styles and creations.</p>
     <div class="Gallery">
-      <img src=${flyingDog} class="Photo" />
+      <img src=${flyingDog} class="dog" />
       <img src=${PanCakes} class="Photo" />
       <img src=${ppAnime} class="Photo" />
       <img src=${wild} class="Photo" />

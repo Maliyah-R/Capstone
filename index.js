@@ -17,10 +17,32 @@ function render(state = store.Home) {
   afterRender(state);
 }
 
-function afterRender() {
+function afterRender(state) {
   document.querySelector(".fa-bars").addEventListener("click", () => {
     document.querySelector("nav > ul").classList.toggle("hidden--mobile");
   });
+  // If the current state has a medium dropdown, initialize the showOtherField function
+  if (state.viewName === "Createprofile") {
+    initShowOtherField();
+  }
+}
+
+function initShowOtherField() {
+  const dropdown = document.getElementById("medium");
+  if (dropdown) {
+    dropdown.addEventListener("change", showOtherField);
+    showOtherField(); // Call it once to set the correct initial state
+  }
+}
+
+function showOtherField() {
+  var dropdown = document.getElementById("medium");
+  var otherField = document.getElementById("otherField");
+  if (dropdown.value === "Other") {
+    otherField.style.display = "block";
+  } else {
+    otherField.style.display = "none";
+  }
 }
 
 router.hooks({
