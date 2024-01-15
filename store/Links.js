@@ -1,8 +1,8 @@
 export default [
   { title: "Home", text: "Home" },
+  { title: "Createprofile", text: " Share" },
   { title: "Browse", text: "Browse" },
-  { title: "Events", text: "Search For Events" },
-  { title: "Contact", text: "Contact" },
+  { title: "Events", text: " Events" },
   { title: "About", text: "About" },
-  { title: "Createprofile", text: "Sign up and Share" }
+  { title: "Contact", text: "Contact" }
 ];

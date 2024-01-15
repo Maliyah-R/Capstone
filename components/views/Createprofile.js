@@ -13,6 +13,24 @@ export default () => html`
         <input type="text" id="username" name="username" required />
       </div>
       <div>
+        <label for="medium">Medium:</label>
+        <select name="medium" id="medium">
+          <option value="">Choose Medium</option>
+          <option value="Digital">Digital</option>
+          <option value="Fiber">Fiber</option>
+          <option value="Drawing">Drawing</option>
+          <option value="Music">Music</option>
+          <option value="Other">Other</option>
+        </select>
+        <input
+          type="text"
+          id="otherField"
+          name="otherField"
+          style="display: none;"
+          placeholder="Please specify"
+        />
+      </div>
+      <div>
         <label for="description">Description:</label>
         <textarea
           id="description"
@@ -20,11 +38,9 @@ export default () => html`
           rows="4"
           cols="50"
           maxlength="500"
-          placeholder="Describe yourself or your art"
+          placeholder="Describe yourself or your art(500 Character Limit)"
         ></textarea>
-        <span id="charCount" style="float: right; font-size: small;"
-          >500 characters remaining</span
-        >
+        <span id="charCount"><br /></span>
       </div>
 
       <div>
