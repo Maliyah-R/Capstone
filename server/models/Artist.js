@@ -31,6 +31,6 @@ const artistSchema = new mongoose.Schema({
   // order: { type: mongoose.Schema.Types.ObjectId, ref: "Connect" }
 });
 
-const artistMedium = mongoose.model("Artist", artistSchema);
+const artistProfile = mongoose.model("Artist", artistSchema);
 
-export default artistMedium;
+export default artistProfile;
