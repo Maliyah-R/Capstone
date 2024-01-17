@@ -22,15 +22,15 @@ router.post("/", async (request, response) => {
   }
 });
 
-router.post("/signup", async (req, res) => {
-  try {
-    const newArtist = await Artist.create(req.body);
-    res.status(201).json(newArtist);
-  } catch (error) {
-    console.error("Error:", error);
-    res.status(500).send("Internal Server Error");
-  }
-});
+// router.post("/signup", async (req, res) => {
+//   try {
+//     const newArtist = await Artist.create(req.body);
+//     res.status(201).json(newArtist);
+//   } catch (error) {
+//     console.error("Error:", error);
+//     res.status(500).send("Internal Server Error");
+//   }
+// });
 
 // Get all Art route
 router.get("/", async (request, response) => {
