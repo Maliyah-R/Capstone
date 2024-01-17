@@ -50,6 +50,7 @@ function setupCreateProfileForm() {
     });
   }
 }
+
 function loadArtists() {
   axios
     .get("/api/artists")
