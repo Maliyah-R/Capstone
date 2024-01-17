@@ -3,7 +3,12 @@ import html from "html-literal";
 export default () => html`
   <section>
     <h1>Create Artist Profile</h1>
-    <form id="createProfileForm" enctype="multipart/form-data">
+    <form
+      id="createProfileForm"
+      enctype="multipart/form-data"
+      method="POST"
+      action=""
+    >
       <div>
         <label for="medium">Medium:</label>
         <select name="medium" id="medium">
@@ -28,7 +33,7 @@ export default () => html`
       </div>
       <div>
         <label for="email">Email:</label>
-        <input type="email" id="email" name="email" required />
+        <input type="email" id="email" name="email" />
       </div>
       <div>
         <label for="experience">Experience:</label>
@@ -56,7 +61,7 @@ export default () => html`
       </div>
       <div>
         <label for="image">Artwork Image:</label>
-        <input type="file" id="image" name="image" accept="image/*" required />
+        <input type="file" id="image" name="image" value="" accept="image/*" />
       </div>
       <button type="submit">Share Artwork</button>
     </form>

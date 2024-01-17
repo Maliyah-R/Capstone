@@ -27,8 +27,8 @@ const artistSchema = new mongoose.Schema({
   //   validate: /^[A-Za-z0-9 ]*$/
   // },
   image: {
-    type: String,
-    required: true
+    contentType: String,
+    data: Buffer
   }
   //,
   // toppings: [String],
