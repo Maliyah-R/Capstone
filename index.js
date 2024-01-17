@@ -3,6 +3,7 @@ import * as store from "./store";
 import Navigo from "navigo";
 import { capitalize } from "lodash";
 import axios from "axios";
+// import html from "html-literal";
 
 const router = new Navigo("/");
 
@@ -26,7 +27,10 @@ function afterRender(state) {
     setupCreateProfileForm();
   }
   if (state.view === "Browse") {
-    loadArtists(); // Call this function when the Browse view is active
+    loadArtists();
+  }
+  if (state.view === "Browse") {
+    displayArtists();
   }
 }
 
@@ -66,7 +70,7 @@ function loadArtists() {
 
 function displayArtists(artists) {
   const container = document.getElementById("artistsContainer");
-  container.innerHTML = "";
+  container.innerHTML = ""; // Clear existing content
 
   artists.forEach(artist => {
     // Create artist div
@@ -105,6 +109,27 @@ function displayArtists(artists) {
     container.appendChild(artistDiv);
   });
 }
+
+// function displayArtists(artists) {
+//   const container = document.getElementById("artistsContainer"); // this container exists Browse view HTML
+//   const artistsHtml = artists
+//     .map(
+//       artist => html`
+//         <div class="artist">
+//           <h3>${artist.username}</h3>
+//           <p>Medium: ${artist.medium}</p>
+//           <p>Email: ${artist.email}</p>
+//           <p>Description: ${artist.description}</p>
+//           ${artist.image
+//             ? `<img src="${artist.image}" alt="${artist.username}'s artwork">`
+//             : ""}
+//         </div>
+//       `
+//     )
+//     .join("");
+
+//   container.innerHTML = artistsHtml;
+// }
 
 router.hooks({
   before: (done, params) => {
