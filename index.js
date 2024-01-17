@@ -65,26 +65,45 @@ function loadArtists() {
 }
 
 function displayArtists(artists) {
-  const container = document.getElementById("artistsContainer"); // this container exists Browse view HTML
-  const artistsHtml = artists
-    .map(
-      artist => `
-    <div class="artist">
-      <h3>${artist.username}</h3>
-      <p>Medium: ${artist.medium}</p>
-      <p>Email: ${artist.email}</p>
-      <p>Description: ${artist.description}</p>
-      ${
-        artist.image
-          ? `<img src="${artist.image}" alt="${artist.username}'s artwork">`
-          : ""
-      }
-    </div>
-  `
-    )
-    .join("");
+  const container = document.getElementById("artistsContainer");
+  container.innerHTML = "";
 
-  container.innerHTML = artistsHtml;
+  artists.forEach(artist => {
+    // Create artist div
+    const artistDiv = document.createElement("div");
+    artistDiv.className = "artist";
+
+    // Add username
+    const username = document.createElement("h3");
+    username.textContent = artist.username;
+    artistDiv.appendChild(username);
+
+    // Add medium
+    const medium = document.createElement("p");
+    medium.textContent = `Medium: ${artist.medium}`;
+    artistDiv.appendChild(medium);
+
+    // Add email
+    const email = document.createElement("p");
+    email.textContent = `Email: ${artist.email}`;
+    artistDiv.appendChild(email);
+
+    // Add description
+    const description = document.createElement("p");
+    description.textContent = `Description: ${artist.description}`;
+    artistDiv.appendChild(description);
+
+    // Add image if available
+    if (artist.image) {
+      const image = document.createElement("img");
+      image.src = artist.image;
+      image.alt = `${artist.username}'s artwork`;
+      artistDiv.appendChild(image);
+    }
+
+    // Append the artist div to the container
+    container.appendChild(artistDiv);
+  });
 }
 
 router.hooks({
