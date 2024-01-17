@@ -23,13 +23,11 @@ function afterRender(state) {
     document.querySelector("nav > ul").classList.toggle("hidden--mobile");
   });
 
-  if (state.view === "CreateProfile") {
+  if (state.view === "Createprofile") {
     setupCreateProfileForm();
   }
   if (state.view === "Browse") {
     loadArtists();
-  }
-  if (state.view === "Browse") {
     displayArtists();
   }
 }
@@ -45,6 +43,7 @@ function setupCreateProfileForm() {
         .post("/api/artist/create", formData)
         .then(response => {
           console.log("Profile created:", response.data);
+          router.navigate("/Createprofile");
           // Handle success, such as redirecting to another view
         })
         .catch(error => {

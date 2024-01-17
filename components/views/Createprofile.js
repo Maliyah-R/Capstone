@@ -33,7 +33,7 @@ export default () => html`
       </div>
       <div>
         <label for="email">Email:</label>
-        <input type="email" id="email" name="email" required />
+        <input type="email" id="email" name="email" />
       </div>
       <div>
         <label for="experience">Experience:</label>
@@ -61,7 +61,7 @@ export default () => html`
       </div>
       <div>
         <label for="image">Artwork Image:</label>
-        <input type="file" id="image" name="image" accept="image/*" required />
+        <input type="file" id="image" name="image" value="" accept="image/*" />
       </div>
       <button type="submit">Share Artwork</button>
     </form>
