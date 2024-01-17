@@ -50,6 +50,7 @@ const logging = (request, response, next) => {
 app.use(cors);
 app.use(express.json());
 app.use(logging);
+app.use("/api/artists", Artist);
 
 // NOTE: MIDDLEWARE GOES BEFORE THE CREATION OF THE ROUTES
 

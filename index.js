@@ -38,7 +38,7 @@ function setupCreateProfileForm() {
       const formData = new FormData(this);
 
       axios
-        .post("/api/profiles", formData)
+        .post("/api/artist/create", formData)
         .then(response => {
           console.log("Profile created:", response.data);
           // Handle success, such as redirecting to another view
