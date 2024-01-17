@@ -34,7 +34,7 @@ header {
   background: radial-gradient(circle, #ced9ed, #cfc7fa, #e2c6ee, #efc8dd, #d7e9db);
   text-align: center;
   padding: 1em 0;
-  color: black;
+  color: #333;
   font-weight: bold;
 }
 
