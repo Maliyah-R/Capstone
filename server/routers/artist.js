@@ -47,17 +47,7 @@ router.post("/", upload.single("image"), async (request, response) => {
 //   }
 // });
 
-// router.post("/signup", async (req, res) => {
-//   try {
-//     const newArtist = await Artist.create(req.body);
-//     res.status(201).json(newArtist);
-//   } catch (error) {
-//     console.error("Error:", error);
-//     res.status(500).send("Internal Server Error");
-//   }
-// });
-
-// Get all Art route
+// Get all Artist route
 router.get("/", async (request, response) => {
   try {
     // Store the query params into a JavaScript Object
@@ -74,7 +64,7 @@ router.get("/", async (request, response) => {
   }
 });
 
-// Get a single Art by ID
+// Get a single Artist by ID
 router.get("/:id", async (request, response) => {
   try {
     const data = await Artist.findById(request.params.id);
