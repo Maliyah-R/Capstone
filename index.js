@@ -22,7 +22,7 @@ function afterRender(state) {
     document.querySelector("nav > ul").classList.toggle("hidden--mobile");
   });
 
-  if (state.view === "CreateProfile.js") {
+  if (state.view === "CreateProfile") {
     setupCreateProfileForm();
   }
   if (state.view === "Browse") {
@@ -64,7 +64,7 @@ function loadArtists() {
 }
 
 function displayArtists(artists) {
-  const container = document.getElementById("artistsContainer"); // Ensure this container exists in your Browse view HTML
+  const container = document.getElementById("artistsContainer"); // this container exists Browse view HTML
   const artistsHtml = artists
     .map(
       artist => `
@@ -78,7 +78,6 @@ function displayArtists(artists) {
           ? `<img src="${artist.image}" alt="${artist.username}'s artwork">`
           : ""
       }
-      <!-- Include other artist details as needed -->
     </div>
   `
     )
