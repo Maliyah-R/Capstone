@@ -21,28 +21,70 @@ function afterRender(state) {
   document.querySelector(".fa-bars").addEventListener("click", () => {
     document.querySelector("nav > ul").classList.toggle("hidden--mobile");
   });
-  // If the current state has a medium dropdown, initialize the showOtherField function
-  if (state.viewName === "Createprofile") {
-    initShowOtherField();
+
+  if (state.view === "CreateProfile.js") {
+    setupCreateProfileForm();
+  }
+  if (state.view === "Browse") {
+    loadArtists(); // Call this function when the Browse view is active
   }
 }
 
-function initShowOtherField() {
-  const dropdown = document.getElementById("medium");
-  if (dropdown) {
-    dropdown.addEventListener("change", showOtherField);
-    showOtherField(); // Call it once to set the correct initial state
+function setupCreateProfileForm() {
+  const form = document.getElementById("createProfileForm");
+  if (form) {
+    form.addEventListener("submit", function(event) {
+      event.preventDefault();
+      const formData = new FormData(this);
+
+      axios
+        .post("/api/profiles", formData)
+        .then(response => {
+          console.log("Profile created:", response.data);
+          // Handle success, such as redirecting to another view
+        })
+        .catch(error => {
+          console.error("Error creating profile:", error);
+          // Handle error
+        });
+    });
   }
 }
+function loadArtists() {
+  axios
+    .get("/api/artists")
+    .then(response => {
+      const artists = response.data;
+      displayArtists(artists);
+    })
+    .catch(error => {
+      console.error("Error fetching artists:", error);
+      // Handle the error appropriately
+    });
+}
 
-function showOtherField() {
-  var dropdown = document.getElementById("medium");
-  var otherField = document.getElementById("otherField");
-  if (dropdown.value === "Other") {
-    otherField.style.display = "block";
-  } else {
-    otherField.style.display = "none";
-  }
+function displayArtists(artists) {
+  const container = document.getElementById("artistsContainer"); // Ensure this container exists in your Browse view HTML
+  const artistsHtml = artists
+    .map(
+      artist => `
+    <div class="artist">
+      <h3>${artist.username}</h3>
+      <p>Medium: ${artist.medium}</p>
+      <p>Email: ${artist.email}</p>
+      <p>Description: ${artist.description}</p>
+      ${
+        artist.image
+          ? `<img src="${artist.image}" alt="${artist.username}'s artwork">`
+          : ""
+      }
+      <!-- Include other artist details as needed -->
+    </div>
+  `
+    )
+    .join("");
+
+  container.innerHTML = artistsHtml;
 }
 
 router.hooks({

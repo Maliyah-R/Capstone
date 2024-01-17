@@ -9,7 +9,7 @@ const artistSchema = new mongoose.Schema({
   medium: {
     type: String,
     required: true,
-    enum: ["Music", "Digital", "Fiber", "Drawing"]
+    enum: ["Music", "Digital", "Fiber", "Drawing", "Other"]
   },
   email: {
     type: String,
@@ -25,6 +25,10 @@ const artistSchema = new mongoose.Schema({
     type: String,
     required: false,
     validate: /^[A-Za-z0-9 ]*$/
+  },
+  image: {
+    type: String,
+    required: true
   }
   //,
   // toppings: [String],

@@ -5,14 +5,6 @@ export default () => html`
     <h1>Create Artist Profile</h1>
     <form id="createProfileForm" enctype="multipart/form-data">
       <div>
-        <label for="name">Name:</label>
-        <input type="text" id="name" name="name" required />
-      </div>
-      <div>
-        <label for="username">Username:</label>
-        <input type="text" id="username" name="username" required />
-      </div>
-      <div>
         <label for="medium">Medium:</label>
         <select name="medium" id="medium">
           <option value="">Choose Medium</option>
@@ -31,6 +23,26 @@ export default () => html`
         />
       </div>
       <div>
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="username" required />
+      </div>
+      <div>
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required />
+      </div>
+      <div>
+        <label for="experience">Experience:</label>
+        <textarea
+          type="text"
+          id="experience"
+          name="experience"
+          rows="5"
+          cols="30"
+          maxlength="300"
+          placeholder="Tell the World About your Artistic Journey(300 Character Limit)"
+        ></textarea>
+      </div>
+      <div>
         <label for="description">Description:</label>
         <textarea
           id="description"
@@ -42,7 +54,6 @@ export default () => html`
         ></textarea>
         <span id="charCount"><br /></span>
       </div>
-
       <div>
         <label for="image">Artwork Image:</label>
         <input type="file" id="image" name="image" accept="image/*" required />

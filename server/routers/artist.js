@@ -3,7 +3,7 @@ import Artist from "../models/Artist.js";
 
 const router = Router();
 
-// Create Art route
+// Create Artist route
 router.post("/", async (request, response) => {
   try {
     const newArtist = new Artist(request.body);
@@ -63,18 +63,18 @@ router.get("/:id", async (request, response) => {
   }
 });
 
-// Delete a pizza by ID
-router.delete("/:id", async (request, response) => {
-  try {
-    const data = await Artist.findByIdAndRemove(request.params.id, {});
+// // Delete a pizza by ID
+// router.delete("/:id", async (request, response) => {
+//   try {
+//     const data = await Artist.findByIdAndRemove(request.params.id, {});
 
-    response.json(data);
-  } catch (error) {
-    // Output error to the console incase it fails to send in response
-    console.log(error);
+//     response.json(data);
+//   } catch (error) {
+//     // Output error to the console incase it fails to send in response
+//     console.log(error);
 
-    return response.status(500).json(error.errors);
-  }
-});
+//     return response.status(500).json(error.errors);
+//   }
+// });
 
 export default router;
