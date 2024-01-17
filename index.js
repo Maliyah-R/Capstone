@@ -59,13 +59,37 @@ function loadArtists() {
     .get("/api/artists")
     .then(response => {
       const artists = response.data;
-      displayArtists(artists);
+      const container = document.getElementById("artistsContainer");
+      container.innerHTML = artists
+        .map(
+          artist => `
+        <div class="artist">
+          <h3>${artist.username}</h3>
+          <p>${artist.medium}</p>
+          <p>${artist.email}</p>
+          <img src="data:${artist.image.contentType};base64,${btoa(
+            String.fromCharCode(...new Uint8Array(artist.image.data))
+          )}" />
+        </div>
+      `
+        )
+        .join("");
     })
-    .catch(error => {
-      console.error("Error fetching artists:", error);
-      // Handle the error appropriately
-    });
+    .catch(error => console.error("Error fetching artists:", error));
 }
+
+// function loadArtists() {
+//   axios
+//     .get("/api/artists")
+//     .then(response => {
+//       const artists = response.data;
+//       displayArtists(artists);
+//     })
+//     .catch(error => {
+//       console.error("Error fetching artists:", error);
+//       // Handle the error appropriately
+//     });
+// }
 
 function displayArtists(artists) {
   const container = document.getElementById("artistsContainer");

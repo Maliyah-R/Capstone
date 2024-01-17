@@ -5,16 +5,7 @@ import PanCakes from "../../assets/img/Pancakes.png";
 import ppAnime from "../../assets/img/powerPuffAnime.png";
 import wild from "../../assets/img/Wilderness.png";
 
-<h1>Browse Artists</h1>
-<ul>
-  <% artists.forEach(artist => { %>
-    <li><%= artist.name %> - <%= artist.medium %></li>
-    <!-- Add more artist details as needed -->
-  <% }); %>
-</ul>
-
-
-<!-- export default () => html`
+export default () => html`
   <section id="browse">
     <h2>Browse Artist Content</h2>
     <p>Explore a diverse range of artistic styles and creations.</p>
@@ -22,5 +13,12 @@ import wild from "../../assets/img/Wilderness.png";
       <!-- Artist profiles will be displayed here -->
     </div>
   </section>
-`; -->
+`;
 
+// <h1>Browse Artists</h1>
+// <ul>
+//   <% artists.forEach(artist => { %>
+//     <li><%= artist.name %> - <%= artist.medium %></li>
+//     <!-- Add more artist details as needed -->
+//   <% }); %>
+// </ul>
