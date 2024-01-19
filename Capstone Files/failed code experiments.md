@@ -1,6 +1,5 @@
 import express from "express";
 import multer from "multer";
-import { GridFsStorage } from "multer-gridfs-storage";
 import dotenv from "dotenv";
 import mongoose from "mongoose";
 import Artist from "./routers/artist.js";
@@ -9,22 +8,7 @@ import Artist from "./routers/artist.js";
 dotenv.config();
 
 const app = express();
-
-// GridFS Storage setup for multer
-const storage = new GridFsStorage({
-  url: process.env.MONGODB,
-  file: (req, file) => {
-    if (file.mimetype === "image/jpeg" || file.mimetype === "image/png") {
-      return {
-        bucketName: "photos",
-        filename: `${Date.now()}_${file.originalname}`
-      };
-    } else {
-      return `${Date.now()}_${file.originalname}`;
-    }
-  }
-});
-const upload = multer({ storage });
+const upload = multer({ storage: multer.memoryStorage() });
 
 mongoose.connect(process.env.MONGODB, {
   // Configuration options to remove deprecation warnings, just include them to remove clutter
@@ -88,6 +72,7 @@ app.post("/api/artist/create", upload.single("image"), async (req, res) => {
       }
     };
 
+    // Mongoose model for Artist
     const newArtist = new Artist(artistData);
     await newArtist.save();
     res.status(201).send("Artist profile created successfully.");
@@ -153,7 +138,7 @@ app.post("/api/artist/create", upload.single("image"), async (req, res) => {
 app.get("/browse", async (req, res) => {
   try {
     const artists = await Artist.find({}); // Fetch data using Mongoose
-    res.render(artists); // Render the EJS template with data
+    res.render("browse", { artists }); // Render the EJS template with data
   } catch (error) {
     res.status(500).send("Error occurred");
   }
@@ -212,4 +197,6 @@ app.get("/weather/:city", (request, response) => {
 });
 
 app.listen(PORT, () => console.log("Listening on port 4040"));
-app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+app.listen(3000, () => {
+  console.log("Server is running on port 3000");
+});
