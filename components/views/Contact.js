@@ -1,5 +1,5 @@
 import html from "html-literal";
-// import logo from "../../assets/img/ArtuniaLogo.png";
+import logo from "../../assets/img/ArtuniaLogo.png";
 
 export default () => html`
   <body>
@@ -19,7 +19,7 @@ export default () => html`
         <button type="submit">Send</button>
       </form>
     </section>
-    <!-- <img id="logo" src=${logo} /> -->
+    <img id="logo" src=${logo} />
 
     <footer>
       Thank you for reaching out.

@@ -22,84 +22,78 @@ function afterRender(state) {
     document.querySelector("nav > ul").classList.toggle("hidden--mobile");
   });
 
-  if (state.view === "CreateProfile") {
-    setupCreateProfileForm();
-  }
   if (state.view === "Browse") {
-    loadArtists();
-    {
-      displayArtists();
-    }
-  }
-
-  function setupCreateProfileForm() {
-    const form = document.getElementById("createProfileForm");
-    if (form) {
-      form.addEventListener("submit", function(event) {
-        event.preventDefault();
-        const formData = new FormData(this);
-
-        axios
-          .post("/api/artist/create", formData)
-          .then(response => {
-            console.log("Profile created:", response.data);
-            // Handle success, such as redirecting to another view
-          })
-          .catch(error => {
-            console.error("Error creating profile:", error);
-            // Handle error
-          });
-      });
-    }
-  }
-
-  function loadArtists() {
+    // Fetch artist data from the server
     axios
       .get("/api/artists")
       .then(response => {
         const artists = response.data;
-        displayArtists(artists);
+        const container = document.getElementById("artistsContainer");
+        container.innerHTML = ""; // Clear existing content
+
+        artists.forEach(artist => {
+          // Create artist div
+          const artistDiv = document.createElement("div");
+          artistDiv.className = "artist";
+
+          // Add username
+          const username = document.createElement("h3");
+          username.textContent = artist.username;
+          artistDiv.appendChild(username);
+
+          // Add medium
+          const medium = document.createElement("p");
+          medium.textContent = `Medium: ${artist.medium}`;
+          artistDiv.appendChild(medium);
+
+          // Add email
+          const email = document.createElement("p");
+          email.textContent = `Email: ${artist.email}`;
+          artistDiv.appendChild(email);
+
+          // Add description
+          const description = document.createElement("p");
+          description.textContent = `Description: ${artist.description}`;
+          artistDiv.appendChild(description);
+
+          // Append the artist div to the container
+          container.appendChild(artistDiv);
+        });
       })
       .catch(error => {
         console.error("Error fetching artists:", error);
-        // Handle the error appropriately
       });
   }
 
-  function displayArtists(artists) {
-    const container = document.getElementById("artistsContainer");
-    container.innerHTML = ""; // Clear existing content
+  if (state.view === "CreateProfile") {
+    document.querySelector("form").addEventListener("submit", event => {
+      event.preventDefault();
 
-    artists.forEach(artist => {
-      // Create artist div
-      const artistDiv = document.createElement("div");
-      artistDiv.className = "artist";
+      const inputList = event.target.elements;
+      console.log("Input Element List", inputList);
 
-      // Add username
-      const username = document.createElement("h3");
-      username.textContent = artist.username;
-      artistDiv.appendChild(username);
+      const requestData = {
+        medium: inputList.medium.value,
+        username: inputList.username.value,
+        email: inputList.email.value,
+        experience: inputList.experience.value,
+        description: inputList.description.value
+      };
+      console.log("Request Body", requestData);
 
-      // Add medium
-      const medium = document.createElement("p");
-      medium.textContent = `Medium: ${artist.medium}`;
-      artistDiv.appendChild(medium);
-
-      // Add email
-      const email = document.createElement("p");
-      email.textContent = `Email: ${artist.email}`;
-      artistDiv.appendChild(email);
-
-      // Add description
-      const description = document.createElement("p");
-      description.textContent = `Description: ${artist.description}`;
-      artistDiv.appendChild(description);
-
-      // Append the artist div to the container
-      container.appendChild(artistDiv);
+      axios
+        .post(`${process.env.ARTIST_API_URL}/artists`, requestData)
+        .then(response => {
+          store.Artist.artists.push(response.data);
+          router.navigate("/Browse");
+        })
+        .catch(error => {
+          console.log("Error creating artist profile:", error);
+        });
     });
   }
 }
+
 router.hooks({
   before: (done, params) => {
     const view =
