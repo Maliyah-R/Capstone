@@ -3,12 +3,7 @@ import html from "html-literal";
 export default () => html`
   <section>
     <h1>Create Artist Profile</h1>
-    <form
-      id="createProfileForm"
-      enctype="multipart/form-data"
-      method="POST"
-      action=""
-    >
+    <form id="createProfileForm" method="POST" action="">
       <div>
         <label for="medium">Medium:</label>
         <select name="medium" id="medium">
@@ -58,10 +53,6 @@ export default () => html`
           placeholder="Describe yourself or your art(500 Character Limit)"
         ></textarea>
         <span id="charCount"><br /></span>
-      </div>
-      <div>
-        <label for="image">Artwork Image:</label>
-        <input type="file" id="image" name="image" value="" accept="image/*" />
       </div>
       <button type="submit">Share Artwork</button>
     </form>
