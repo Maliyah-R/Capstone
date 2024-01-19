@@ -1,6 +1,4 @@
 import express from "express";
-import multer from "multer";
-import { GridFsStorage } from "multer-gridfs-storage";
 import dotenv from "dotenv";
 import mongoose from "mongoose";
 import Artist from "./routers/artist.js";
@@ -9,22 +7,6 @@ import Artist from "./routers/artist.js";
 dotenv.config();
 
 const app = express();
-
-// GridFS Storage setup for multer
-const storage = new GridFsStorage({
-  url: process.env.MONGODB,
-  file: (req, file) => {
-    if (file.mimetype === "image/jpeg" || file.mimetype === "image/png") {
-      return {
-        bucketName: "photos",
-        filename: `${Date.now()}_${file.originalname}`
-      };
-    } else {
-      return `${Date.now()}_${file.originalname}`;
-    }
-  }
-});
-const upload = multer({ storage });
 
 mongoose.connect(process.env.MONGODB, {
   // Configuration options to remove deprecation warnings, just include them to remove clutter
@@ -75,97 +57,28 @@ app.use("/api/artists", Artist);
 // Artist Profile Routes
 
 // Add Route for Creating Artist Profiles
-
-app.post("/api/artist/create", upload.single("image"), async (req, res) => {
+app.post("/api/artist/create", async (req, res) => {
   try {
-    const artistData = {
-      username: req.body.username,
-      medium: req.body.medium,
-      email: req.body.email,
-      image: {
-        data: req.file.buffer,
-        contentType: req.file.mimetype
-      }
-    };
-
-    const newArtist = new Artist(artistData);
+    const newArtist = new Artist(req.body);
     await newArtist.save();
-    res.status(201).send("Artist profile created successfully.");
+    res.status(201).json({
+      message: "Artist profile created successfully",
+      artist: newArtist
+    });
   } catch (error) {
-    console.error(error);
-    res.status(500).send("Error creating artist profile.");
+    res.status(400).json({ message: "Error saving artist profile", error });
   }
 });
-
-// app.post("/api/artist/create", upload.single("image"), async (req, res) => {
-//   try {
-//     //  req.body contains other artist data like username, medium, etc.
-//     const artistData = req.body;
-
-//     // req.file is the file uploaded via Multer, stored in memory
-//     if (req.file) {
-//       const file = req.file.buffer; // Buffer containing file data
-
-//       // Create a new Artist document including the file data
-//       const newArtist = new Artist({
-//         ...artistData,
-//         fileData: file // Storing the file as a binary field
-//       });
-
-//       await newArtist.save(); // Save the artist document to MongoDB
-
-//       res.status(201).json({ message: "Artist profile created successfully" });
-//     } else {
-//       res.status(400).json({ message: "No file uploaded" });
-//     }
-//   } catch (error) {
-//     res.status(500).json({ message: "Error creating artist profile", error });
-//   }
-// try {
-//   // Process the file or upload it to cloud storage, etc.
-//   // For example, upload to cloud storage and get the URL
-
-//   const imageUrl = await uploadToCloud(req.file); // Hypothetical function
-
-//   const artistData = {
-//     ...req.body,
-//     image: imageUrl // URL from cloud storage
-//   };
-
-//   const newArtist = new Artist(artistData);
-//   await newArtist.save();
-//   res.status(201).json(newArtist);
-// } catch (error) {
-//   res.status(400).json({ message: "Error saving artist profile", error });
-// }
-// try {
-//   const newArtist = new Artist(req.body);
-//   await newArtist.save();
-//   res.status(201).json({
-//     message: "Artist profile created successfully",
-//     artist: newArtist
-//   });
-// } catch (error) {
-//   res.status(400).json({ message: "Error saving artist profile", error });
-// }
 
 // Add Route for Retrieving Artist Profiles
-app.get("/browse", async (req, res) => {
+app.get("/api/artist/browse", async (req, res) => {
   try {
-    const artists = await Artist.find({}); // Fetch data using Mongoose
-    res.render(artists); // Render the EJS template with data
+    const artists = await Artist.find({});
+    res.json(artists);
   } catch (error) {
-    res.status(500).send("Error occurred");
+    res.status(500).json({ message: "Error retrieving artists", error });
   }
 });
-// app.get("/api/artist/browse", upload.single("image"), async (req, res) => {
-//   try {
-//     const artists = await Artist.find({});
-//     res.json(artists);
-//   } catch (error) {
-//     res.status(500).json({ message: "Error retrieving artists", error });
-//   }
-// });
 
 // Request handlers go here
 app.get("/status", (request, response) => {
@@ -211,5 +124,5 @@ app.get("/weather/:city", (request, response) => {
   });
 });
 
-app.listen(PORT, () => console.log("Listening on port 4040"));
+// app.listen(PORT, () => console.log("Listening on port 4040"));
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
