@@ -26,9 +26,6 @@ const artistSchema = new mongoose.Schema({
     required: false,
     validate: /^[A-Za-z0-9 ]*$/
   }
-
-  // toppings: [String],
-  // order: { type: mongoose.Schema.Types.ObjectId, ref: "Connect" }
 });
 
 const artistProfile = mongoose.model("Artist", artistSchema);
