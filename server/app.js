@@ -1,7 +1,7 @@
 import express from "express";
 import dotenv from "dotenv";
 import mongoose from "mongoose";
-import Artist from "./routers/artist.js";
+import Artist from "./routers/ArtRoute.js";
 
 // Load environment variables from .env file
 dotenv.config();
