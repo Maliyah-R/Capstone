@@ -1,7 +1,7 @@
 import express from "express";
 import dotenv from "dotenv";
 import mongoose from "mongoose";
-import Artist from "./routers/ArtRoute.js";
+import ArtRoute from "./routers/ArtRoute.js";
 
 // Load environment variables from .env file
 dotenv.config();
@@ -50,7 +50,7 @@ const logging = (request, response, next) => {
 app.use(cors);
 app.use(express.json());
 app.use(logging);
-app.use("/api/artists", Artist);
+app.use("/artists", ArtRoute);
 
 // NOTE: MIDDLEWARE GOES BEFORE THE CREATION OF THE ROUTES
 
@@ -59,7 +59,7 @@ app.use("/api/artists", Artist);
 // Add Route for Creating Artist Profiles
 app.post("/api/artist/create", async (req, res) => {
   try {
-    const newArtist = new Artist(req.body);
+    const newArtist = new ArtRoute(req.body);
     await newArtist.save();
     res.status(201).json({
       message: "Artist profile created successfully",
@@ -73,7 +73,7 @@ app.post("/api/artist/create", async (req, res) => {
 // Add Route for Retrieving Artist Profiles
 app.get("/api/artist/browse", async (req, res) => {
   try {
-    const artists = await Artist.find({});
+    const artists = await ArtRoute.find({});
     res.json(artists);
   } catch (error) {
     res.status(500).json({ message: "Error retrieving artists", error });

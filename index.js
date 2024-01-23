@@ -22,50 +22,50 @@ function afterRender(state) {
     document.querySelector("nav > ul").classList.toggle("hidden--mobile");
   });
 
-  if (state.view === "Browse") {
-    // Fetch artist data from the server
-    axios
-      .get("/api/artists")
-      .then(response => {
-        const artists = response.data;
-        const container = document.getElementById("artistsContainer");
-        container.innerHTML = ""; // Clear existing content
+  // if (state.view === "Browse") {
+  //   // Fetch artist data from the server
+  //   axios
+  //     .get(`${process.env.ARTIST_API_URL}/artists`)
+  //     .then(response => {
+  //       const artists = response.data;
+  //       const container = document.getElementById("artistsContainer");
+  //       container.innerHTML = ""; // Clear existing content
 
-        artists.forEach(artist => {
-          // Create artist div
-          const artistDiv = document.createElement("div");
-          artistDiv.className = "artist";
+  //       artists.forEach(artist => {
+  //         // Create artist div
+  //         const artistDiv = document.createElement("div");
+  //         artistDiv.className = "artist";
 
-          // Add username
-          const username = document.createElement("h3");
-          username.textContent = artist.username;
-          artistDiv.appendChild(username);
+  //         // Add username
+  //         const username = document.createElement("h3");
+  //         username.textContent = artist.username;
+  //         artistDiv.appendChild(username);
 
-          // Add medium
-          const medium = document.createElement("p");
-          medium.textContent = `Medium: ${artist.medium}`;
-          artistDiv.appendChild(medium);
+  //         // Add medium
+  //         const medium = document.createElement("p");
+  //         medium.textContent = `Medium: ${artist.medium}`;
+  //         artistDiv.appendChild(medium);
 
-          // Add email
-          const email = document.createElement("p");
-          email.textContent = `Email: ${artist.email}`;
-          artistDiv.appendChild(email);
+  //         // Add email
+  //         const email = document.createElement("p");
+  //         email.textContent = `Email: ${artist.email}`;
+  //         artistDiv.appendChild(email);
 
-          // Add description
-          const description = document.createElement("p");
-          description.textContent = `Description: ${artist.description}`;
-          artistDiv.appendChild(description);
+  //         // Add description
+  //         const description = document.createElement("p");
+  //         description.textContent = `Description: ${artist.description}`;
+  //         artistDiv.appendChild(description);
 
-          // Append the artist div to the container
-          container.appendChild(artistDiv);
-        });
-      })
-      .catch(error => {
-        console.error("Error fetching artists:", error);
-      });
-  }
+  //         // Append the artist div to the container
+  //         container.appendChild(artistDiv);
+  //       });
+  //     })
+  //     .catch(error => {
+  //       console.error("Error fetching artists:", error);
+  //     });
+  // }
 
-  if (state.view === "CreateProfile") {
+  if (state.view === "Createprofile") {
     document.querySelector("form").addEventListener("submit", event => {
       event.preventDefault();
 
@@ -84,7 +84,7 @@ function afterRender(state) {
       axios
         .post(`${process.env.ARTIST_API_URL}/artists`, requestData)
         .then(response => {
-          store.Artist.artists.push(response.data);
+          store.Browse.artists.push(response.data);
           router.navigate("/Browse");
         })
         .catch(error => {
@@ -126,6 +126,50 @@ router.hooks({
             console.log(err);
             done();
           });
+        break;
+      case "Browse":
+        // Fetch artist data from the server
+        axios
+          .get(`${process.env.ARTIST_API_URL}/artists`)
+          .then(response => {
+            store.Browse.artists = response.data;
+            done();
+            // const container = document.getElementById("artistsContainer");
+            // container.innerHTML = ""; // Clear existing content
+
+            // artists.forEach(artist => {
+            //   // Create artist div
+            //   const artistDiv = document.createElement("div");
+            //   artistDiv.className = "artist";
+
+            //   // Add username
+            //   const username = document.createElement("h3");
+            //   username.textContent = artist.username;
+            //   artistDiv.appendChild(username);
+
+            //   // Add medium
+            //   const medium = document.createElement("p");
+            //   medium.textContent = `Medium: ${artist.medium}`;
+            //   artistDiv.appendChild(medium);
+
+            //   // Add email
+            //   const email = document.createElement("p");
+            //   email.textContent = `Email: ${artist.email}`;
+            //   artistDiv.appendChild(email);
+
+            //   // Add description
+            //   const description = document.createElement("p");
+            //   description.textContent = `Description: ${artist.description}`;
+            //   artistDiv.appendChild(description);
+
+            //   // Append the artist div to the container
+            //   container.appendChild(artistDiv);
+            // });
+          })
+          .catch(error => {
+            console.error("Error fetching artists:", error);
+          });
+
         break;
       default:
         done();

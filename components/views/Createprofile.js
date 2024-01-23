@@ -3,7 +3,7 @@ import html from "html-literal";
 export default () => html`
   <section>
     <h1>Create Artist Profile</h1>
-    <form id="createProfileForm" method="POST" action="">
+    <form id="createProfileForm">
       <div>
         <label for="medium">Medium:</label>
         <select name="medium" id="medium">
