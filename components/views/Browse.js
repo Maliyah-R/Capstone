@@ -11,14 +11,11 @@ export default state => html`
     <p>Explore a diverse range of artistic styles and creations.</p>
     <div id="artistsContainer"></div>
   </section>
-  ${state.artists}
-  ${state.artists
-    .map(artist => {
-      return `<tr><td>${artist.username}</td><td>${artist.medium}</td><td>${
-        artist.experience
-      }</td><td>${artist.description.join(" & ")}</td><td>${
-        artist.email
-      }</td></tr>`;
-    })
-    .join("")}
+  <section id="artist">
+    ${state.artists
+      .map(artist => {
+        return `<h1>${artist.username}</h1><br>${artist.medium}<br><h6>${artist.experience}</h6><br>${artist.description}<br>`;
+      })
+      .join("")}
+  </section>
 `;
